@@ -4,6 +4,8 @@ import { Input } from "./components/ui/input.jsx";
 import { Button } from "./components/ui/button.jsx";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Icon library
+import "./App.css"
+import Navbar from "../navbar.jsx";
 
 const shows = [
   {
@@ -60,41 +62,7 @@ export default function NetflixUIClone() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* === Navbar === */}
-      <header className="flex items-center justify-between px-6 py-4 bg-black/70 backdrop-blur-md z-50">
-        <div className="text-2xl font-bold">Chance</div>
-
-        <nav className="hidden md:flex md:items-center md:justify-end md:space-x-12">
-          {["Bets", "Home", "Contact us"].map((text) => (
-            <a
-              key={text}
-              href="#"
-              className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-            >
-              {text}
-            </a>
-          ))}
-        </nav>
-
-        <button onClick={() => setExpanded(!expanded)} className="md:hidden text-white">
-          {expanded ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </header>
-
-      {expanded && (
-        <nav className="md:hidden bg-black px-6 pb-4">
-          <div className="flex flex-col pt-4 space-y-4">
-            {["Bets", "Games", "Contact us"].map((text) => (
-              <a
-                key={text}
-                href="#"
-                className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-              >
-                {text}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
+      <Navbar/>
 
       {/* === Hero Section === */}
       <div
