@@ -1,5 +1,5 @@
 "use client";
-
+import Launcher from "../Pages/launcher";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import contractABI from "../contract_data/GetSet.json";
@@ -96,74 +96,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">GetSet Contract</h1>
-
-      {/* Wallet Connection */}
-      {account ? (
-        <p className="mb-4">Connected: {account}</p>
-      ) : (
-        <button 
-          onClick={initializeEthers} 
-          className="px-4 py-2 bg-blue-600 text-white rounded-md mb-4"
-        >
-          Connect Wallet
-        </button>
-      )}
-
-      {/* Input Field for Setting Value */}
-      <input
-        type="number"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Enter value"
-        className="border px-4 py-2 mb-4"
-      />
-      <button 
-        onClick={setContractValue} 
-        className="px-4 py-2 bg-green-600 text-white rounded-md mb-4"
-      >
-        Set Value
-      </button>
-
-      {/* Get Value Button */}
-      <button 
-        onClick={getContractValue} 
-        className="px-4 py-2 bg-purple-600 text-white rounded-md mb-4"
-      >
-        Get Value
-      </button>
-
-      {/* Display Retrieved Value */}
-      {retrievedValue !== null && (
-        <p className="text-lg font-bold">Stored Value: {retrievedValue}</p>
-      )}
-
-      {/* Deposit Funds */}
-      <input
-        type="text"
-        value={depositAmount}
-        onChange={(e) => setDepositAmount(e.target.value)}
-        placeholder="Enter ETH to deposit"
-        className="border px-4 py-2 mb-4"
-      />
-      <button 
-        onClick={depositFunds} 
-        className="px-4 py-2 bg-yellow-600 text-white rounded-md mb-4"
-      >
-        Deposit Funds
-      </button>
-
-      {/* Get User Balance */}
-      <button 
-        onClick={getUserBalance} 
-        className="px-4 py-2 bg-red-600 text-white rounded-md mb-4"
-      >
-        Get Balance
-      </button>
-
-      {userBalance !== null && (
-        <p className="text-lg font-bold">Your Balance: {userBalance} ETH</p>
-      )}
+      <Launcher/>
     </div>
   );
 }
