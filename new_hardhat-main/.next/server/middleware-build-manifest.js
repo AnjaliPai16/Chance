@@ -37,6 +37,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/games/games.js"
+    ],
+    "/launcher": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/launcher.js"
     ]
   },
   "ampFirstPages": []
