@@ -12,10 +12,10 @@ function Launcher() {
             <div className="shrink-0">
               <a href="#" title="" className="flex">
               <img
-                className="w-10 max-w-10 mx-auto md:max-w-md "
+                className="w-12 max-w-10 mx-auto md:max-w-md "
                 src="https://landingfoliocom.imgix.net/store/collection/dusk/images/hero/1/3d-illustration.png"
                 alt=""
-              /><p className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500 m-2 mx-5 text-3xl font-bold">Chance</p>
+              /><p className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500 m-2 mx-5 text-2xl font-bold">Chance</p>
               </a>
             </div>
 
@@ -61,7 +61,7 @@ function Launcher() {
             </div>
 
             <nav className="hidden md:flex md:items-center md:justify-end md:space-x-12">
-              {["Products", "Features", "Pricing", "Support"].map((text) => (
+              {["Bets","Games","Contact us"].map((text) => (
                 <a
                   key={text}
                   href="#"
@@ -76,7 +76,7 @@ function Launcher() {
           {expanded && (
             <nav>
               <div className="flex flex-col pt-8 pb-4 space-y-6">
-                {["Products", "Features", "Pricing", "Support"].map((text) => (
+                {["Bets","Games","Contact us"].map((text) => (
                   <a
                     key={text}
                     href="#"
@@ -96,16 +96,18 @@ function Launcher() {
           <div className="relative">
             <div className="lg:w-2/3">
               <p className="text-sm font-normal tracking-widest text-gray-300 uppercase">
-                A Hub for Designers, Developers & Marketers
+                Play With Security
               </p>
               <h1 className="mt-6 text-4xl font-normal text-white sm:mt-10 sm:text-5xl lg:text-6xl xl:text-8xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500">
-                  Unlimited Design
+                  You Want to Play Let's, Let's Play
                 </span>{" "}
-                Inspiration
+                <br/>
+                <p className="text-lg text-slate-400 font-bold">-Chamber</p>
+                  
               </h1>
               <p className="max-w-lg mt-4 text-xl font-normal text-gray-400 sm:mt-8">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat.
+              A decentralized betting and gaming platform where users can stake real money on games of skill and chance, ensuring secure, transparent, and instant payouts through blockchain technology.
               </p>
               <div className="relative inline-flex items-center justify-center mt-8 sm:mt-12 group">
                 <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
@@ -114,44 +116,21 @@ function Launcher() {
                   className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full"
                   role="button"
                 >
-                  Start Exploring Inspiration
+                  Connect with MetaMask
+                </a>
+              </div>
+              <div className="relative inline-flex items-center justify-center mt-8 sm:mt-12 group mx-7">
+                <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-purple-500 to-cyan-500 group-hover:shadow-lg group-hover:shadow-purple-500/50"></div>
+                <a
+                  href="#"
+                  className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full"
+                  role="button"
+                >
+                  Play
                 </a>
               </div>
 
-              <div>
-                <div className="inline-flex items-center pt-6 mt-8 border-t border-gray-800 sm:pt-10 sm:mt-14">
-                  <svg
-                    className="w-6 h-6"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    strokeWidth="1.5"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M13 7.00003H21M21 7.00003V15M21 7.00003L13 15L9 11L3 17"
-                      stroke="url(#a)"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="a"
-                        x1="3"
-                        y1="7.00003"
-                        x2="22.2956"
-                        y2="12.0274"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop offset="0%" stopColor="cyan" />
-                        <stop offset="100%" stopColor="purple" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  <span className="ml-2 text-base font-normal text-white">
-                    42 new design inspiration was added last week
-                  </span>
-                </div>
-              </div>
+              
             </div>
 
             <div className="mt-8 md:absolute md:mt-0 md:top-32 lg:top-0 md:right-0">
