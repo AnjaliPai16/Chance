@@ -1,8 +1,10 @@
 import React from "react";
-
+import './launcher.css'
+import Navbar from "./navbar";
 const Contact = () => {
   return (
     <>
+    <Navbar/>
       <section className="relative z-10 overflow-hidden bg-slate-800 py-20 dark:bg-dark lg:py-[120px] min-w-full p-11">
         <div className="container">
           <div className="-mx-4 flex flex-wrap lg:justify-between">

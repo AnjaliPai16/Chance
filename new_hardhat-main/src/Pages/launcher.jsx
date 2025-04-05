@@ -1,13 +1,112 @@
 import React, { useState } from "react";
 import './launcher.css'
+import * as ReactDOM from "react-dom/client";
+import { ethers } from "ethers";
+import contractABI from "../contract_data/GetSet.json";
+import contractAddress from "../contract_data/GetSet-address.json";
+import Navbar from "./navbar";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 function Launcher({ onConnectWallet }) {
+  const [value, setValue] = useState(""); 
+  const [retrievedValue, setRetrievedValue] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [depositAmount, setDepositAmount] = useState("");
+  const [userBalance, setUserBalance] = useState(null);
 
+  // Initialize Provider, Signer, and Contract
+  const initializeEthers = async () => {
+    if (!window.ethereum) {
+      alert("MetaMask not detected!");
+      return;
+    }
+    
+    try {
+      const _provider = new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+
+      const _contract = new ethers.Contract(contractAddress.address, contractABI.abi, _signer);
+
+      setProvider(_provider);
+      setSigner(_signer);
+      setContract(_contract);
+
+      const accounts = await _provider.send("eth_requestAccounts", []);
+
+      if (accounts.length > 0 && account === accounts[0]) {
+        alert("MetaMask Connected");
+        return;
+      }
+      setAccount(accounts[0]);
+    } catch (error) {
+      console.error("Error initializing ethers:", error);
+    }
+  };
+
+  // Set value in contract
+  const setContractValue = async () => {
+    if (!contract) return alert("Please connect wallet first!");
+    try {
+      const tx = await contract.set(BigInt(value)); // Convert string to BigInt
+      await tx.wait(); // Wait for transaction confirmation
+      alert("Value set successfully!");
+    } catch (error) {
+      console.error("Error setting value:", error);
+    }
+  };
+
+  // Get value from contract
+  const getContractValue = async () => {
+    if (!contract) return alert("Please connect wallet first!");
+    try {
+      const result = await contract.get();
+      setRetrievedValue(result.toString());
+    } catch (error) {
+      console.error("Error getting value:", error);
+    }
+  };
+
+  // Deposit funds to the contract
+  const depositFunds = async () => {
+    if (!contract) return alert("Please connect wallet first!");
+    try {
+      const tx = await signer.sendTransaction({
+        to: contractAddress.address,
+        value: ethers.parseEther(depositAmount), // Convert to wei
+      });
+      await tx.wait();
+      alert(`Deposited ${depositAmount} ETH successfully!`);
+      setDepositAmount("");
+    } catch (error) {
+      console.error("Error depositing funds:", error);
+    }
+  };
+
+  // Get user balance
+  const getUserBalance = async () => {
+    if (!contract) return alert("Please connect wallet first!");
+    try {
+      const balance = await contract.getBalance(account);
+      setUserBalance(ethers.formatEther(balance)); // Convert from wei to ETH
+    } catch (error) {
+      console.error("Error getting balance:", error);
+    }
+  };
+
+
+  
   const [expanded, setExpanded] = useState(false);
 
   return (
     <>
     <div className="min-h-screen flex flex-col bg-black min-w-full">
-    <header className="py-4 bg-black sm:py-6">
+      <Navbar/>
+    {/* <header className="py-4 bg-black sm:py-6">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="shrink-0">
@@ -65,7 +164,7 @@ function Launcher({ onConnectWallet }) {
               {["Bets","Games","Contact us"].map((text) => (
                 <a
                   key={text}
-                  href="#"
+                  href=".\ContactUs"
                   className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
                 >
                   {text}
@@ -80,7 +179,7 @@ function Launcher({ onConnectWallet }) {
                 {["Bets","Games","Contact us"].map((text) => (
                   <a
                     key={text}
-                    href="#"
+                    href="/ContactUs"
                     className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
                   >
                     {text}
@@ -90,7 +189,7 @@ function Launcher({ onConnectWallet }) {
             </nav>
           )}
         </div>
-      </header>
+      </header> */}
 
       <section className="py-12 bg-black sm:pb-16 lg:pb-20 xl:pb-24">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -101,7 +200,7 @@ function Launcher({ onConnectWallet }) {
               </p>
               <h1 className="mt-6 text-4xl font-normal text-white sm:mt-10 sm:text-5xl lg:text-6xl xl:text-8xl">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500">
-                  You Want to Play Let's, Let's Play
+                  You Want to Play, Let's Play
                 </span>{" "}
                 <br/>
                 
@@ -115,7 +214,7 @@ function Launcher({ onConnectWallet }) {
                 <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:shadow-lg group-hover:shadow-cyan-500/50"></div>
                 <a
                   href="#"
-                  onClick={onConnectWallet}
+                  onClick={initializeEthers}
                   className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full"
                   role="button"
                 >
@@ -125,7 +224,7 @@ function Launcher({ onConnectWallet }) {
               <div className="relative inline-flex items-center justify-center mt-8 sm:mt-12 group mx-7">
                 <div className="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-purple-500 to-cyan-500 group-hover:shadow-lg group-hover:shadow-purple-500/50"></div>
                 <a
-                  href="#"
+                  href="./games/games"
                   className="relative inline-flex items-center justify-center px-8 py-3 text-base font-normal text-white bg-black border border-transparent rounded-full"
                   role="button"
                 >

@@ -4,6 +4,8 @@ import { Input } from "./components/ui/input.jsx";
 import { Button } from "./components/ui/button.jsx";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Icon library
+import "./App.css"
+import Navbar from "../navbar.jsx";
 
 const shows = [
   {
@@ -12,6 +14,7 @@ const shows = [
       "Uncover tiles, avoid hidden mines. Each safe pick boosts your payout — hit a mine and you lose. Cash out anytime!",
     image: "/house_of_cards.jpg",
     category: "Available games",
+    path:"./Mines"
   },
   {
     title: "Dice",
@@ -19,6 +22,7 @@ const shows = [
       "Pick a number, roll the dice. The closer your guess, the bigger the win. Simple, fast, and thrilling!",
     image: "/house_of_cards.jpg",
     category: "Available games",
+    path:"./Mines"
   },
   {
     title: "Spin Wheel",
@@ -26,6 +30,7 @@ const shows = [
       "Spin the wheel, land on a multiplier. Bigger risks, bigger rewards. Pure luck, instant thrills!",
     image: "/house_of_cards.jpg",
     category: "Available games",
+    path:"./Mines"
   },
 ];
 
@@ -51,50 +56,16 @@ export default function NetflixUIClone() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-2xl font-bold">
-          Loading Casino 🎲...
+          Loading games 🎲...
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col px-10">
       {/* === Navbar === */}
-      <header className="flex items-center justify-between px-6 py-4 bg-black/70 backdrop-blur-md z-50">
-        <div className="text-2xl font-bold">Chance</div>
-
-        <nav className="hidden md:flex md:items-center md:justify-end md:space-x-12">
-          {["Bets", "Home", "Contact us"].map((text) => (
-            <a
-              key={text}
-              href="#"
-              className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-            >
-              {text}
-            </a>
-          ))}
-        </nav>
-
-        <button onClick={() => setExpanded(!expanded)} className="md:hidden text-white">
-          {expanded ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </header>
-
-      {expanded && (
-        <nav className="md:hidden bg-black px-6 pb-4">
-          <div className="flex flex-col pt-4 space-y-4">
-            {["Bets", "Games", "Contact us"].map((text) => (
-              <a
-                key={text}
-                href="#"
-                className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-              >
-                {text}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
+      <Navbar/>
 
       {/* === Hero Section === */}
       <div
@@ -130,7 +101,8 @@ export default function NetflixUIClone() {
               {shows
                 .filter((show) => show.title.toLowerCase().includes(search.toLowerCase()))
                 .map((show, i) => (
-                  <motion.div
+                  <a href="./Mines">
+                    <motion.div
                     key={i}
                     className="min-w-[200px] cursor-pointer"
                     whileHover={{ scale: 1.05 }}
@@ -138,7 +110,10 @@ export default function NetflixUIClone() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     onMouseEnter={() => setHoveredGame(show)}
-                    onClick={() => setSelectedGame(show)}
+                    onClick={() => {setSelectedGame(show); console.log(show);
+                      
+                    }}
+                    
                   >
                     <Card className="bg-zinc-800">
                       <img
@@ -147,35 +122,24 @@ export default function NetflixUIClone() {
                         className="w-full h-48 object-cover rounded-t-2xl"
                       />
                       <CardContent className="p-4">
-                        <p className="text-lg font-semibold">{show.title}</p>
+                      
                         {show.description && (
                           <p className="text-sm text-gray-400 mt-2">{show.description}</p>
                         )}
                       </CardContent>
                     </Card>
+                    
                   </motion.div>
+                  </a>
+                  
                 ))}
             </div>
           </div>
         ))}
       </div>
 
-      {/* === Game Modal === */}
-      {selectedGame && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="bg-zinc-900 p-6 rounded-2xl max-w-md"
-          >
-            <h3 className="text-2xl font-bold">{selectedGame.title}</h3>
-            <p className="mt-2 text-gray-300">{selectedGame.description}</p>
-            <Button className="mt-6" onClick={() => setSelectedGame(null)}>
-              Close
-            </Button>
-          </motion.div>
-        </div>
-      )}
+      
+      
     </div>
   );
 }
