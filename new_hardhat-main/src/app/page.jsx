@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import contractABI from "../contract_data/GetSet.json";
 import contractAddress from "../contract_data/GetSet-address.json";
-
+import Contact from "../Pages/ContactUs";
 export default function Page() {
   const [value, setValue] = useState(""); 
   const [retrievedValue, setRetrievedValue] = useState(null);
@@ -99,7 +99,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <Launcher onConnectWallet={initializeEthers} />
-
+      <Contact/>
     </div>
   );
 }

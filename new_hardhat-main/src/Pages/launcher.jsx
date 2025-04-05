@@ -104,7 +104,8 @@ function Launcher({ onConnectWallet }) {
                   You Want to Play Let's, Let's Play
                 </span>{" "}
                 <br/>
-                <p className="text-lg text-slate-400 font-bold">-Chamber</p>
+                
+                <p className="text-lg text-slate-400 font-bold mt-3">-Chamber</p>
                   
               </h1>
               <p className="max-w-lg mt-4 text-xl font-normal text-gray-400 sm:mt-8">
