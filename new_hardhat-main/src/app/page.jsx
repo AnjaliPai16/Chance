@@ -25,6 +25,7 @@ export default function Page() {
     try {
       const _provider = new ethers.BrowserProvider(window.ethereum);
       const _signer = await _provider.getSigner();
+
       const _contract = new ethers.Contract(contractAddress.address, contractABI.abi, _signer);
 
       setProvider(_provider);
@@ -32,6 +33,11 @@ export default function Page() {
       setContract(_contract);
 
       const accounts = await _provider.send("eth_requestAccounts", []);
+
+      if (accounts.length > 0 && account === accounts[0]) {
+        alert("Wallet Connected");
+        return;
+      }
       setAccount(accounts[0]);
     } catch (error) {
       console.error("Error initializing ethers:", error);
@@ -88,15 +94,12 @@ export default function Page() {
     }
   };
 
-  useEffect(() => {
-    if (window.ethereum) {
-      initializeEthers();
-    }
-  }, []);
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <Launcher/>
+      <Launcher onConnectWallet={initializeEthers} />
+
     </div>
   );
 }
