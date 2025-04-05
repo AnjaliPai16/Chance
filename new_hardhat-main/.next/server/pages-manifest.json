@@ -2,8 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/ContactUs": "pages/ContactUs.js",
-  "/launcher": "pages/launcher.js",
-  "/games/Mines": "pages/games/Mines.js",
-  "/games/games": "pages/games/games.js"
+  "/games/games": "pages/games/games.js",
+  "/games/Mines": "pages/games/Mines.js"
 }

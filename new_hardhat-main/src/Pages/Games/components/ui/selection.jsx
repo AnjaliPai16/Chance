@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
-const mineOptions = Array.from({ length: 20 }, (_, i) => ({
+const mineOptions = Array.from({ length: 15 }, (_, i) => ({
   id: i + 1,
   name: `${i + 1} Mines`
 }));
