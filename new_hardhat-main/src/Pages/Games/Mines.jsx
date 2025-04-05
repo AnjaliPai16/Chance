@@ -84,7 +84,7 @@ const MineGamblingGame = () => {
   const [bets,setbets] = useState("Bet")
   return (
     <div className="page relative antialiased bg-grid-white ">
-      <a className="text-sm text-white  ml-5" href="./games">Back To Game</a>
+      
       <div className="relative z-10 ">
       <div>
         
@@ -95,6 +95,7 @@ const MineGamblingGame = () => {
         <p className="text-sm text-white text-center  ">dont refresh</p>
 
         <div className="flex flex-row-reverse items-baseline justify-around ">
+          
           <div className="grid bg-gray-800 ">
             {clickedBoxes.map((clicked, index) => (
               <div

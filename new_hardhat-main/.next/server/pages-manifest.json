@@ -1,13 +1,7 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-<<<<<<< HEAD
   "/_error": "pages/_error.js",
-=======
-  "/ContactUs": "pages/ContactUs.js",
-  "/launcher": "pages/launcher.js",
->>>>>>> 40a1149ed4032954aa05d562a009306fd5a8ed1d
-  "/games/Mines": "pages/games/Mines.js",
+  "/_document": "pages/_document.js",
   "/games/games": "pages/games/games.js",
-  "/ContactUs": "pages/ContactUs.js"
+  "/games/Mines": "pages/games/Mines.js"
 }

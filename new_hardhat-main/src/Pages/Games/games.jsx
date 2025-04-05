@@ -12,7 +12,7 @@ const shows = [
     title: "Mines",
     description:
       "Uncover tiles, avoid hidden mines. Each safe pick boosts your payout — hit a mine and you lose. Cash out anytime!",
-    image: "/house_of_cards.jpg",
+    image: "image.png",
     category: "Available games",
     path:"./Mines"
   },
