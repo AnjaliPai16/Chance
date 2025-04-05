@@ -5,6 +5,8 @@ import { Button } from "./components/ui/button.jsx";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Icon library
 import "./App.css"
+
+
 import Navbar from "../navbar.jsx";
 
 const shows = [
@@ -12,17 +14,17 @@ const shows = [
     title: "Mines",
     description:
       "Uncover tiles, avoid hidden mines. Each safe pick boosts your payout — hit a mine and you lose. Cash out anytime!",
-    image: "image.png",
+    image: "/mines_img.jpg",
     category: "Available games",
     path:"./Mines"
   },
   {
-    title: "Dice",
+    title: "High Low",
     description:
       "Pick a number, roll the dice. The closer your guess, the bigger the win. Simple, fast, and thrilling!",
-    image: "/house_of_cards.jpg",
+    image: "/highlow.png",
     category: "Available games",
-    path:"./Mines"
+    path:"./highlow"
   },
   {
     title: "Spin Wheel",
@@ -198,7 +200,7 @@ export default function NetflixUIClone() {
               {shows
                 .filter((show) => show.title.toLowerCase().includes(search.toLowerCase()))
                 .map((show, i) => (
-                  <a href="./Mines">
+                  <a href={show.path}>
                     <motion.div
                     key={i}
                     className="min-w-[200px] cursor-pointer"
