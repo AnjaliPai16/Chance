@@ -31,10 +31,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/games/Mines.js"
     ],
-    "/games/games": [
+    "/games/highlow": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/games/games.js"
+      "static/chunks/pages/games/highlow.js"
     ]
   },
   "ampFirstPages": []
