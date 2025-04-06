@@ -1,6 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import "./SpinWheel.css"
 
 const WheelGame = () => {
   // Updated number of segments to 15
@@ -230,7 +231,7 @@ const WheelGame = () => {
   }))
 
   return (
-    <div className="wheel-game-container">
+    <div className="wheel-game-container min-w-full m-0">
       {/* Control Panel */}
       <div className="control-panel">
         <h1 className="game-title">Wheel Game</h1>
