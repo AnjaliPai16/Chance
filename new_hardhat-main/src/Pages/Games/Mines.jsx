@@ -6,7 +6,11 @@ import Navbar from "../navbar";
 import MineSelection from "./components/ui/selection";
 import { cn } from "./components/utils/cn";
 import { Spotlight } from "./components/ui/Spotlight";
+import { ethers } from "ethers";
+import contractABI from "../../contract_data/Mines.json";
+import contractAddress from "../../contract_data/Mines-address.json";
 
+// These utility functions can remain outside the component
 const factorial = (n) => {
   if (n === 0 || n === 1) return 1;
   let result = 1;
@@ -30,6 +34,15 @@ const getMultiplier = (safePicks, totalTiles = 25, bombs = 10, houseEdge = 0.01)
 };
 
 const MineGamblingGame = () => {
+  // All useState hooks moved inside the component function
+  const [value, setValue] = useState(""); 
+  const [retrievedValue, setRetrievedValue] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [depositAmount, setDepositAmount] = useState("");
+  const [userBalance, setUserBalance] = useState(null);
   const [clickedBoxes, setClickedBoxes] = useState(Array(25).fill(false));
   const [isGameOver, setIsGameOver] = useState(false);
   const [bombs, setBombs] = useState([]);
@@ -42,13 +55,75 @@ const MineGamblingGame = () => {
   const [lastWin, setLastWin] = useState(null);
   const [hoverTile, setHoverTile] = useState(null);
   
+  const initializeEthers = async () => {
+    if (!window.ethereum) {
+      alert("MetaMask not detected!");
+      return;
+    }
+    
+    try {
+      const _provider = new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      const _contract = new ethers.Contract(contractAddress.address, contractABI.abi, _signer);
+
+      setProvider(_provider);
+      setSigner(_signer);
+      setContract(_contract);
+
+      const accounts = await _provider.send("eth_requestAccounts", []);
+      setAccount(accounts[0]);
+    } catch (error) {
+      console.error("Error initializing ethers:", error);
+    }
+  };
+  
   const getDiamondCount = () => {
     if (isGameOver) return 0;
     return clickedBoxes.filter((clicked, index) => clicked && !bombs.includes(index)).length;
   };
   
-  const sendtocontract = () => {
-    // Contract logic
+  const sendtocontract = async () => {
+    if (!window.ethereum) {
+      alert("Please install MetaMask to place a bet.");
+      return;
+    }
+  
+    try {
+      if (!contract) {
+        await initializeEthers();
+      }
+      
+      const tx = await contract.bet({
+        value: ethers.parseEther(betAmount.toString()),
+        gasLimit: 200_000n, // using BigInt syntax as required in ethers v6
+      });
+  
+      await tx.wait(); // wait for transaction to be mined
+      console.log("Bet placed successfully!");
+    } catch (err) {
+      console.error("Bet failed:", err);
+      alert("Bet transaction failed. Please try again.");
+    }
+  };
+  
+  // Add cashout functionality that connects to the Solidity contract
+  const cashoutFromContract = async (amount) => {
+    if (!window.ethereum || !contract || !account) {
+      alert("MetaMask not connected properly.");
+      return false;
+    }
+    
+    try {
+      const amountWei = ethers.parseEther(amount.toString());
+      const tx = await contract.sendEtherFromContract(account, amountWei);
+      await tx.wait();
+      console.log("Cashout successful!");
+      return true;
+    } catch (err) {
+      console.error("Cashout failed:", err);
+      alert("Cashout transaction failed. Please try again.");
+      return false;
+    }
   };
   
   const placeBombs = () => {
@@ -86,22 +161,35 @@ const MineGamblingGame = () => {
     placeBombs();
   };
   
-  const startGame = () => {
+  const startGame = async () => {
     if (betAmount <= 0) {
       alert("Please enter a valid bet amount");
       return;
     }
-    resetGame();
-    setGameState("playing");
+    try {
+      await sendtocontract(); // Call smart contract bet() function
+      resetGame();
+      setGameState("playing");
+    } catch (err) {
+      console.error("Game start failed:", err);
+    }
   };
   
-  const cashOut = () => {
+  const cashOut = async () => {
     const winAmount = (betAmount * multi).toFixed(2);
-    setLastWin(winAmount);
-    setGameState("cashout");
-    setTimeout(() => {
-      resetGame();
-    }, 3000);
+    
+    try {
+      const success = await cashoutFromContract(winAmount);
+      if (success) {
+        setLastWin(winAmount);
+        setGameState("cashout");
+        setTimeout(() => {
+          resetGame();
+        }, 3000);
+      }
+    } catch (err) {
+      console.error("Cashout failed:", err);
+    }
   };
 
   const multi = getMultiplier(getDiamondCount(), 25, selectedMines.id);
@@ -109,6 +197,12 @@ const MineGamblingGame = () => {
   
   const safeTilesLeft = 25 - selectedMines.id - getDiamondCount();
   const nextMulti = getMultiplier(getDiamondCount() + 1, 25, selectedMines.id);
+
+  useEffect(() => {
+    if (window.ethereum) {
+      initializeEthers();
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">

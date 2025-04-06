@@ -4,7 +4,7 @@ const path = require("path");
 
 async function main() {
     // Get the contract factory
-    const ContractFactory = await ethers.getContractFactory("GetSet");
+    const ContractFactory = await ethers.getContractFactory("Mines");
 
     // Deploy the contract
     const contract = await ContractFactory.deploy(/* constructor arguments if any */);
@@ -16,7 +16,7 @@ async function main() {
     console.log(`Contract deployed to: ${contractAddress}`);
 
     // Save contract details for the frontend
-    saveFrontendFiles(contract, "GetSet");
+    saveFrontendFiles(contract, "Mines");
 }
 
 function saveFrontendFiles(contract, name) {
