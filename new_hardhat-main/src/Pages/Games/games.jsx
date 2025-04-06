@@ -30,6 +30,14 @@ const shows = [
     title: "Spin Wheel",
     description:
       "Spin the wheel, land on a multiplier. Bigger risks, bigger rewards. Pure luck, instant thrills!",
+    image: "/Wheel.png",
+    category: "Available games",
+    path:"./SpinWheel"
+  },
+  {
+    title: "Black Jack",
+    description:
+      "Spin the wheel, land on a multiplier. Bigger risks, bigger rewards. Pure luck, instant thrills!",
     image: "/house_of_cards.jpg",
     category: "Available games",
     path:"./SpinWheel"
