@@ -1,6 +1,9 @@
 "use client"
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { ethers } from "ethers";
+import contractABI from "../../contract_data/Mines.json";
+import contractAddress from "../../contract_data/Mines-address.json";
 import "./SpinWheel.css"
 
 const WheelGame = () => {
@@ -35,6 +38,7 @@ const WheelGame = () => {
     ],
   }
 
+  // Game states
   const [bet, setBet] = useState(100)
   const [isSpinning, setIsSpinning] = useState(false)
   const [rotation, setRotation] = useState(0)
@@ -42,9 +46,40 @@ const WheelGame = () => {
   const [result, setResult] = useState(null)
   const [showCongrats, setShowCongrats] = useState(false)
   const [riskLevel, setRiskLevel] = useState("Medium")
-  
+
+  // Contract integration states
+  const [account, setAccount] = useState(null);
+  const [contract, setContract] = useState(null);
+
   const canvasRef = useRef(null)
   const containerRef = useRef(null)
+
+  // Connect to MetaMask and initialize contract
+  useEffect(() => {
+    const connectWallet = async () => {
+      if (window.ethereum) {
+        try {
+          const provider = new ethers.BrowserProvider(window.ethereum);
+          await provider.send("eth_requestAccounts", []);
+          const signer = await provider.getSigner();
+          const address = await signer.getAddress();
+          setAccount(address);
+          const contractInstance = new ethers.Contract(
+            contractAddress.address,
+            contractABI.abi,
+            signer
+          );
+          setContract(contractInstance);
+        } catch (err) {
+          console.error("Wallet connection error:", err);
+          alert("Failed to connect wallet. Please try again.");
+        }
+      } else {
+        alert("Please install MetaMask!");
+      }
+    };
+    connectWallet();
+  }, []);
 
   // Generate wheel segments using weighted probabilities based on risk level
   const generateSegments = (risk) => {
@@ -99,15 +134,32 @@ const WheelGame = () => {
     ctx.fill()
   }
 
-  // Spin function
-  const spin = () => {
+  // Spin function with smart contract bet() call
+  const spin = async () => {
     if (isSpinning || bet <= 0) return
+    if (!contract) {
+      alert("Contract not connected");
+      return;
+    }
+
+    // Place bet via contract
+    try {
+      const tx = await contract.bet({
+        value: ethers.parseEther(bet.toString()),
+        gasLimit: 200_000n,
+      });
+      await tx.wait();
+    } catch (err) {
+      console.error("Bet transaction failed:", err);
+      alert("Bet failed, please try again.");
+      return;
+    }
 
     setIsSpinning(true)
     setResult(null)
     setShowCongrats(false)
 
-    // Calculate winning segment
+    // Calculate winning segment using weighted probabilities
     let randomWeight = Math.random()
     let cumulative = 0
     let winningIndex = 0
@@ -181,6 +233,29 @@ const WheelGame = () => {
     }
   }
 
+  // Cash out function that calls the contract's sendEtherFromContract to transfer winnings
+  const cashOut = async () => {
+    if (!result || result.amount <= 0) return;
+    const amount = result.amount;
+    const amountString = amount.toFixed(18);
+    if (!contract || !account) {
+      alert("Contract not connected");
+      return;
+    }
+    try {
+      const tx = await contract.sendEtherFromContract(
+        account,
+        ethers.parseEther(amountString)
+      );
+      await tx.wait();
+      alert(`Cashed out: ETH ${amount.toFixed(2)}`);
+    } catch (err) {
+      console.error("Cash out error:", err);
+      alert("Cash out failed");
+    }
+  }
+
+  // Resize and redraw the canvas
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
@@ -286,6 +361,16 @@ const WheelGame = () => {
         >
           {isSpinning ? 'Spinning...' : 'SPIN'}
         </button>
+        {/* Cash Out Button */}
+        <button
+          onClick={cashOut}
+          disabled={!result || result.amount <= 0 || isSpinning}
+          className="spin-button"
+          style={{ marginTop: "1rem", backgroundColor: "#f59e0b" }}
+        >
+          Cash Out
+        </button>
+        
         <div className="multipliers-section">
           <h2 className="section-title">Multipliers</h2>
           <div className="multipliers-grid">
@@ -656,6 +741,7 @@ const styles = `
   font-weight: 700;
   background-color: #22c55e;
   color: white;
+  margin-top: 0.5rem;
 }
 
 .spin-button:hover:not(:disabled) {

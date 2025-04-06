@@ -23,10 +23,15 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/games/Mines": [
+    "/games/SpinWheel": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/games/Mines.js"
+      "static/chunks/pages/games/SpinWheel.js"
+    ],
+    "/games/games": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/games/games.js"
     ],
     "/games/highlow": [
       "static/chunks/webpack.js",
