@@ -23,15 +23,15 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/games/Mines": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/games/Mines.js"
+    ],
     "/games/games": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/games/games.js"
-    ],
-    "/games/highlow": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/games/highlow.js"
     ]
   },
   "ampFirstPages": []
