@@ -284,7 +284,7 @@ const MineGamblingGame = () => {
                 )}
               </div>
               
-              <div className="border-t border-gray-700 pt-6">
+              <div className="border-t border-gray-800 pt-6">
                 <h3 className="text-xl font-bold mb-4 text-gray-300">Game Stats</h3>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -327,7 +327,7 @@ const MineGamblingGame = () => {
           
           {/* Right Panel - Game Grid */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-700">
+            <div className="bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-400">
               <div className="grid grid-cols-5 gap-3">
                 {clickedBoxes.map((clicked, index) => (
                   <div
