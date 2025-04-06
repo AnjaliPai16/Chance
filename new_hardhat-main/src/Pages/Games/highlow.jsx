@@ -229,7 +229,7 @@ function App() {
             <div className="mb-6">
               <input
                 className="w-full px-4 py-3 rounded-lg bg-[#131922] border border-[#2a3449] focus:ring-2 focus:ring-green-500 focus:border-transparent text-white placeholder-gray-500 transition-all duration-200"
-                type="number"
+                type="text"
                 placeholder="bet"
                 value={betAmount}
                 onChange={(e) => setBetAmount(Number(e.target.value))}
