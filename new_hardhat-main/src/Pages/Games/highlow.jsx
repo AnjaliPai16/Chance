@@ -122,11 +122,21 @@ function App() {
     <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] min-h-screen overflow-hidden text-white">
       {showConfetti && <Confetti />}
 
-      <header className="pt-6 px-8">
-        <div className="text-center">
+      <header className="pt-6 px-8 flex justify-between items-center">
+        <button 
+          onClick={() => window.location.href = "/games/games"} 
+          className=" text-white font-medium py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+          </svg>
+          Back to Games
+        </button>
+        <div className="text-center flex-1">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">High Low Card Game</h1>
           <p className="text-gray-400 mt-2">Guess if the next card will be higher or lower!</p>
         </div>
+        <div className="w-32"></div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-5 gap-8">

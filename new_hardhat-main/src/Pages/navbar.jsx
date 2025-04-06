@@ -59,11 +59,11 @@ function Navbar() {
     Home
   </a>
   <a
-    href="/ContactUs"
-    className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-  >
-    Bets
-  </a>
+            href="/ContactUs"
+            className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
+          >
+            Bets
+          </a>
   <a
     href="./games/games"
     className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"

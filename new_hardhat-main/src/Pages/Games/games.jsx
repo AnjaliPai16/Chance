@@ -32,7 +32,7 @@ const shows = [
       "Spin the wheel, land on a multiplier. Bigger risks, bigger rewards. Pure luck, instant thrills!",
     image: "/house_of_cards.jpg",
     category: "Available games",
-    path:"./Mines"
+    path:"./SpinWheel"
   },
 ];
 
