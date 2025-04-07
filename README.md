@@ -35,9 +35,15 @@ All games are integrated with **MetaMask** for secure wallet-based interactions 
 
 ## 📸 Screenshots
 ![WhatsApp Image 2025-04-06 at 19 49 11_0f5c0dcf](https://github.com/user-attachments/assets/a66d1bb8-fbc4-486f-beed-a1394c05df5d)
-![Up![WhatsApp Image 2025-04-06 at 19 49 53_438d29f6](https://github.com/user-attachments/assets/0670381e-908f-4a1f-b389-e34856222f59)
-![WhatsApp Image 2025-04-06 at 19 50 16_400bfc7e](https://github.com/user-attachments/assets/2f623ec8-34cd-4699-97fb-a68b849aff36)
-![WhatsApp Image 2025-04-06 at 19 50 16_400bfc7e](https://github.com/user-attachments/assets/14c255df-ee57-48ed-b426-a5111b9613d2)
+![WhatsApp Image 2025-04-06 at 15 01 28_9fa45af7](https://github.com/user-attachments/assets/a5aeb528-10b2-43f1-97bb-b9cf1f6286f5)
+![WhatsApp Image 2025-04-06 at 19 49 42_9f60e8b5](https://github.com/user-attachments/assets/a61c8bb4-9398-4c4e-8e9a-bc37d53ea4d6)
+![WhatsApp Image 2025-04-06 at 19 49 53_438d29f6](https://github.com/user-attachments/assets/b537a41c-bb78-4af5-aeff-3bf6ac0ca4a6)
+![WhatsApp Image 2025-04-06 at 19 50 16_400bfc7e](https://github.com/user-attachments/assets/475ac01c-5049-4a64-8ae3-5b15b2ceff3b)
+![image](https://github.com/user-attachments/assets/2ee3193e-0181-43f3-b1b7-652d784bb2ea)
+![image](https://github.com/user-attachments/assets/6db6f2f5-0dff-47d7-a855-4fa6a1481666)
+
+
+
 
 
 ---
