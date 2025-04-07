@@ -125,12 +125,6 @@ export default function NetflixUIClone() {
                 Home
               </a>
               <a
-                href="/ContactUs"
-                className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-              >
-                Bets
-              </a>
-              <a
                 href="./games"
                 className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
               >

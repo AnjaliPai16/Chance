@@ -23,6 +23,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/games/BlackJack": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/games/BlackJack.js"
+    ],
     "/games/games": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
