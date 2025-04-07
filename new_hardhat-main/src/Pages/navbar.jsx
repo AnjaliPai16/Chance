@@ -6,8 +6,8 @@ function Navbar() {
 
   const navLinks = [
     ["Home", "/launcher"],
-    ["Bets", "/ContactUs"],
-    ["Games", "/games/games"],
+    
+    ["Games", "/Games/games"],
     ["Contact us", "/ContactUs"]
   ];
 
@@ -58,14 +58,9 @@ function Navbar() {
   >
     Home
   </a>
+
   <a
-            href="/ContactUs"
-            className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-          >
-            Bets
-          </a>
-  <a
-    href="./games/games"
+    href="./Games/games"
     className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
   >
     Games
@@ -88,14 +83,9 @@ function Navbar() {
           >
             Home
           </a>
+
           <a
-            href="/ContactUs"
-            className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
-          >
-            Bets
-          </a>
-          <a
-            href="./games/games"
+            href="./Games/games"
             className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
           >
             Games

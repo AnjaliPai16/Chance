@@ -195,8 +195,8 @@ function App() {
 
       <header className="pt-6 px-8 flex justify-between items-center">
         <button
-          onClick={() => (window.location.href = "/games/games")}
-          className="text-white font-medium py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+          onClick={() => (window.location.href = "/Games/games")}
+          className="text-white font-medium py-2 px-4 rounded-lg  hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
