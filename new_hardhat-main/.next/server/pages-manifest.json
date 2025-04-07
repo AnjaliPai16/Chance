@@ -3,10 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/Games/games": "pages/Games/games.js",
-  "/Games/Mines": "pages/Games/Mines.js",
-  "/Games/highlow": "pages/Games/highlow.js",
-  "/Games/BlackJack": "pages/Games/BlackJack.js",
-  "/Games/SpinWheel": "pages/Games/SpinWheel.js",
-  "/ContactUs": "pages/ContactUs.js",
-  "/launcher": "pages/launcher.js"
+  "/launcher": "pages/launcher.js",
+  "/ContactUs": "pages/ContactUs.js"
 }

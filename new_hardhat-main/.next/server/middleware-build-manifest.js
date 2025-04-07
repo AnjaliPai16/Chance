@@ -13,30 +13,15 @@ globalThis.__BUILD_MANIFEST = {
   ],
   "rootMainFilesTree": {},
   "pages": {
-    "/Games/BlackJack": [
+    "/ContactUs": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/Games/BlackJack.js"
-    ],
-    "/Games/Mines": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Games/Mines.js"
-    ],
-    "/Games/SpinWheel": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Games/SpinWheel.js"
+      "static/chunks/pages/ContactUs.js"
     ],
     "/Games/games": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/Games/games.js"
-    ],
-    "/Games/highlow": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Games/highlow.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
