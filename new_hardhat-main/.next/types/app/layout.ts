@@ -1,4 +1,4 @@
-// File: C:\Users\Hema\Desktop\HOF61\Chance\new_hardhat-main\src\app\layout.jsx
+// File: C:\Users\VAIDIK\Desktop\hof2\pacca final\Chance\new_hardhat-main\src\app\layout.jsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
