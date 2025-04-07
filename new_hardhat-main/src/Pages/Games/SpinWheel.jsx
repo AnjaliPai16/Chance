@@ -329,7 +329,7 @@ const WheelGame = () => {
             <input
               type="number"
               value={bet}
-              onChange={(e) => setBet(Math.max(1, Number(e.target.value) || 1))}
+              onChange={(e) => setBet(e.target.value)}
               className="bet-input"
               disabled={isSpinning}
             />
