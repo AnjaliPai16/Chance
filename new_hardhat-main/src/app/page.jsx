@@ -19,25 +19,13 @@ export default function Page() {
   const [contract, setContract] = useState(null);
   const [depositAmount, setDepositAmount] = useState("");
   const [userBalance, setUserBalance] = useState(null);
-  const router = createBrowserRouter([
-
-
-    {
-      path: "/",
-      element:<Launcher />      ,
-    },
-    {
-      path: "/ContactUs",
-      element: <Contact />,
-    },
-  ]);
 
   
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       
-      <RouterProvider router={router} />
+      <Launcher />
     </div>
   );
 }
